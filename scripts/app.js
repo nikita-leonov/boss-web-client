@@ -1,7 +1,9 @@
 var app = angular.module('app', ['ngRoute', 'ngResource']);
 
 app.factory('Submission', function($resource) {
-  return $resource('http://ec2-52-10-252-124.us-west-2.compute.amazonaws.com/api/submissions/:id',{}, {
+    http://10.60.0.74:3000/
+  //return $resource('http://ec2-52-10-252-124.us-west-2.compute.amazonaws.com/api/submissions/:id',{}, {
+return $resource('http://ec2-52-10-252-124.us-west-2.compute.amazonaws.com/api/submissions/:id',{}, {    
     update: {
       method: 'PUT' // this method issues a PUT request
     }
