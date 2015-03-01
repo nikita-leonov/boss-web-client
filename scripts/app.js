@@ -18,40 +18,22 @@ app.config(['$routeProvider',
 }]);
 
 app.controller('submissionsController', function($scope, Submission) {
+    $scope.actionLabelStrings = {'CREATED':'Assign', 'ASSIGNED':'Claim', 'PENDING_ACCEPTANCE':'Approve', 'ACCEPTED': 'Start', 'IN_PROGRESS':'Complete'}
+
+    $scope.statusLabelStrings = {'CREATED':'Created', 'ASSIGNED':'Assigned', 'PENDING_ACCEPTANCE':'Pending Acceptance', 'ACCEPTED': 'Accepted', 'IN_PROGRESS':'In Progress', 'COMPLETED':'Completed'}
+    $scope.categoryLabelStrings = {'POTHOLE':'Pothole',
+                                   'DEBRIS':'Debris on Road',
+                                   'DAMAGED_SIDEWALK':'Damaged Sidewalk',
+                                   'STREET_SWEEPING':'Street Cleaning',
+                                   'BROKEN_STREETLIGHTS':'Broken Streetlight'}
+    
     $scope.updateSubmissionStates = function(submissions) {
         $scope.actionLabels = {}
         $scope.actionsVisibility = {}
 
         for (i = 0; i < submissions.length; i++) {
-            var submission = submissions[i]
-            
-            var actionLabel
-            switch(submission.status) {
-                case 'CREATED': {
-                    actionLabel = 'Assign'
-                    break;
-                }
-                case 'ASSIGNED': {
-                    actionLabel = 'Claim'                    
-                    break;
-                }
-                case 'PENDING_ACCEPTANCE': {
-                    actionLabel = 'Approve'                    
-                    break;
-                }
-                case 'ACCEPTED': {
-                    actionLabel = 'Start'                    
-                    break;
-                }
-                case 'IN_PROGRESS': {
-                    actionLabel = 'Complete'                    
-                    break;
-                }
-                default: {
-                    actionLabel = 'XYZ'
-                }
-            }            
-            $scope.actionLabels[submission.id] = actionLabel
+            var submission = submissions[i]            
+            $scope.actionLabels[submission.id] = $scope.actionLabelStrings[submission.status]
             
             var actionVisibility
             if ($scope.role == 'WORKER') {

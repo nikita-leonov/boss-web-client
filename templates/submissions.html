@@ -1,7 +1,7 @@
-    <tr ng-repeat="model in submissions | filter:isRecordVisible">
-      <td>{{model.category}}</td>
-      <td><img src="{{model.photoURL}}"></td>
-      <td>Lat: 34.018357<br>Lon: -118.486918</td>
-      <td>{{model.status}}</td>
-      <td><button ng-click="updateStatus(model.id)" ng-show="actionsVisibility[model.id]">{{actionLabels[model.id]}}</button></td>
-    </tr>
+<tr ng-repeat="model in submissions | filter:isRecordVisible">
+  <td>{{categoryLabelStrings[model.category]}}</td>
+  <td><img src="{{model.photoURL}}"></td>
+  <td>Lat: {{model.location.lat}}<br>Lon: {{model.location.lng}}</td>
+  <td>{{statusLabelStrings[model.status]}}</td>
+  <td><button ng-click="updateStatus(model.id)" ng-show="actionsVisibility[model.id]">{{actionLabels[model.id]}}</button></td>
+</tr>
