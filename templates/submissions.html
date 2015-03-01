@@ -1,6 +1,7 @@
-<div ng-repeat="model in submissions | filter:isRecordVisible">
-    <div>{{model.status}}</div>
-    <div><img src="{{model.photoURL}}"/></div>
-    <button ng-click="updateStatus(model.id)" ng-show="actionsVisibility[model.id]">{{actionLabels[model.id]}}</button>
-    <!--<div><a href="#/submissions/{{model.id}}">link</a></div>-->
-</div>
+    <tr ng-repeat="model in submissions | filter:isRecordVisible">
+      <td>{{model.category}}</td>
+      <td><img src="{{model.photoURL}}"></td>
+      <td>Lat: 34.018357<br>Lon: -118.486918</td>
+      <td>{{model.status}}</td>
+      <td><button ng-click="updateStatus(model.id)" ng-show="actionsVisibility[model.id]">{{actionLabels[model.id]}}</button></td>
+    </tr>
