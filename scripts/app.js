@@ -15,24 +15,100 @@ app.config(['$routeProvider',
                 templateUrl : 'templates/submissions.html',
                 controller  : 'submissionsController'
             })
-//            .when('/submissions/:id', {
-//                templateUrl : 'templates/submission.html',
-//                controller  : 'submissionController'
-//            })
 }]);
 
 app.controller('submissionsController', function($scope, Submission) {
-    $scope.submissions = Submission.query();
-    $scope.isRecordVisible = function(record) {
-        return (record.status == 'CREATED' || record.status == 'ASSIGNED')
+    $scope.updateSubmissionStates = function(submissions) {
+        $scope.actionLabels = {}
+        $scope.actionsVisibility = {}
+
+        for (i = 0; i < submissions.length; i++) {
+            var submission = submissions[i]
+            
+            var actionLabel
+            switch(submission.status) {
+                case 'CREATED': {
+                    actionLabel = 'Assign'
+                    break;
+                }
+                case 'ASSIGNED': {
+                    actionLabel = 'Claim'                    
+                    break;
+                }
+                case 'PENDING_ACCEPTANCE': {
+                    actionLabel = 'Approve'                    
+                    break;
+                }
+                case 'ACCEPTED': {
+                    actionLabel = 'Start'                    
+                    break;
+                }
+                case 'IN_PROGRESS': {
+                    actionLabel = 'Complete'                    
+                    break;
+                }
+                default: {
+                    actionLabel = 'XYZ'
+                }
+            }            
+            $scope.actionLabels[submission.id] = actionLabel
+            
+            var actionVisibility
+            if ($scope.role == 'WORKER') {
+                actionVisibility = (submission.status == 'CREATED' || submission.status == 'ASSIGNED')
+            } else {
+                actionVisibility = (submission.status == 'IN_PROGRESS' || submission.status == 'ACCEPTED' || submission.status == 'PENDING_ACCEPTANCE')
+            }            
+            $scope.actionsVisibility[submission.id] = actionVisibility
+        }                
     }
-    $scope.updateStatus = function(id, status) {
+
+    $scope.submissions = Submission.query($scope.updateSubmissionStates)
+    
+    $scope.isRecordVisible = function(record) {
+        var result
+        
+        if ($scope.role == 'WORKER') {
+            result = (record.status == 'CREATED' || record.status == 'ASSIGNED')
+        } else {
+            result = true
+        }        
+
+        return result
+    }
+
+    $scope.updateStatus = function(id) {
         Submission.get({ id: id }, function(submission) {
+            var status            
+            switch(submission.status) {
+                case 'CREATED': {
+                    status = 'ASSIGNED'
+                    break;
+                }
+                case 'ASSIGNED': {
+                    status = 'PENDING_ACCEPTANCE'                    
+                    break;
+                }
+                case 'PENDING_ACCEPTANCE': {
+                    status = 'ACCEPTED'                    
+                    break;
+                }
+                case 'ACCEPTED': {
+                    status = 'IN_PROGRESS'                    
+                    break;
+                }
+                case 'IN_PROGRESS': {
+                    status = 'COMPLETED'                    
+                    break;
+                }
+            }
+            
             submission.status = status
             submission.$update(function(submission) {
                 for (i = 0; i < $scope.submissions.length; i++) { 
                     if ($scope.submissions[i].id == submission.id) {
                         $scope.submissions[i] = submission
+                        $scope.updateSubmissionStates($scope.submissions)
                         $scope.$apply()
                         break;
                     }
@@ -41,19 +117,3 @@ app.controller('submissionsController', function($scope, Submission) {
         });
     }
 });
-
-app.controller('submissionController', function($scope, $routeParams, Submission) {
-    $scope.submission = Submission.get({ id: $routeParams.id }, function(submission) {
-        $scope.isCreated = (submission.status == "CREATED")
-        $scope.isAssigned = (submission.status == "ASSIGNED")        
-    });    
-    $scope.assign = function() {
-        $scope.submission.status = "ASSIGNED"
-        $scope.submission.$update()        
-    }
-    $scope.claim = function() {
-        $scope.submission.status = "PENDING_ACCEPTANCE"
-        $scope.submission.$update()
-    }
-});
-

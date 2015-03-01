@@ -1,7 +1,6 @@
 <div ng-repeat="model in submissions | filter:isRecordVisible">
     <div>{{model.status}}</div>
     <div><img src="{{model.photoURL}}"/></div>
-    <button ng-click="updateStatus(model.id, 'ASSIGNED')" ng-show="model.status == 'CREATED'">Assign</button>
-    <button ng-click="updateStatus(model.id, 'PENDING_ACCEPTANCE')" ng-show="model.status == 'ASSIGNED'">Claim</button>
+    <button ng-click="updateStatus(model.id)" ng-show="actionsVisibility[model.id]">{{actionLabels[model.id]}}</button>
     <!--<div><a href="#/submissions/{{model.id}}">link</a></div>-->
 </div>

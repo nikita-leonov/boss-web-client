@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <script src="http://code.angularjs.org/1.3.9/angular.js"></script>
+    <script src="http://code.angularjs.org/1.3.9/angular-resource.js"></script>
+    <script src="http://code.angularjs.org/1.3.9/angular-route.js"></script>
+    <script src="scripts/app.js"></script>
+    <title>Local Alert</title>
+  </head>
+  <body ng-app="app">
+    <input type="hidden" value="{{role = 'PROVIDER'}}"/>
+    <div ng-controller="submissionsController">
+        <div ng-view></div>
+    </div>
+  </body>
+</html>
