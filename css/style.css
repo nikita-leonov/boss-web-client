@@ -1,0 +1,209 @@
+body {
+font-family: 'Open Sans', sans-serif;
+font-weight:400;
+background-color:rgba(0,0,0,0.02);
+}
+
+.hero {
+background-image:url('../img/debris.jpg');
+background-position: center center;
+background-size:cover;
+box-shadow:inset 0 0 0 2000px rgba(0,0,0,0.15);
+height:600px;
+}
+.hero-overlay {
+background:url('../img/ip6.svg') 20% center no-repeat;
+height: 600px;
+width: 100%;
+position: absolute;
+top: 0;
+/*background-size:cover;*/
+}
+.orbit-slider{
+	position: absolute;
+	background-position: center center;
+	height: 600px;
+	top: -66px;
+	background-size: cover;
+}
+.logo p{
+	text-indent: 44px;
+	color: #fff;
+	font-size: 24px;
+	margin-top: 12px;
+}
+.logo{
+padding-top: 240px;
+width: 360px;
+color:rgba(255,255,255,1);
+text-align:center;
+}
+
+
+.localert-process{
+	padding-bottom: 32px;
+}
+.localert-process h4{
+	text-align: center;
+}
+.localert-process p{
+	text-align: center;
+}
+.localert-process img{
+	width: 192px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.form-container{
+	width: 330px;
+}
+
+
+input.email-field{
+  height: 40px;
+  width: 60%;
+  padding-left: 16px;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  border-left: 1px solid #eeeeee;
+  border-right: 1px solid #F8E71C;
+  float: left;
+  font-size: 13px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  color: #333333;
+}
+
+input.subscribe-button{
+  width: 40%;
+  height: 40px;
+  border: 1px solid #F8E71C;
+  background-color: #F8E71C;
+  color: #000;
+  float: right;
+  font-size: 13px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  padding: 0;
+}
+input[type=email]{
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+}
+ 
+input[type=email]:focus{
+  border: 1px solid #F8E71C;
+}
+input[type=submit]{
+  outline: none;
+}
+
+
+.footer-wrap{
+	width: 100%;
+	background: #eee;
+}
+footer{
+	padding-top: 24px;
+	text-align: center;
+	color: #333;
+}
+
+footer a{
+	color: #ccc;
+}
+
+.color-gray{
+	color: #ccc;
+}
+
+/*admin*/
+.top-bar{
+  /*background-color: rgba(0,0,0,0.2);*/
+  background-color: transparent;
+}
+.top-bar .admin-logo{
+  width: 100px;
+}
+.top-bar .user-login{
+  color: #fff;
+  font-weight: 300;
+}
+.top-bar a{
+  color: #F8E71C;
+}
+table{
+  border: none;
+}
+table img{
+  width: 64px;
+}
+table td{
+  vertical-align: top;
+}
+table button{
+  background: #F8E71C;
+  color: #000;
+  border-radius: 8px;
+  padding: 0.5rem;
+  border: 1px solid #000;
+  transition: none;
+  width: 100%;
+}
+table button:hover{
+  background: #000;
+}
+table select{
+  border-radius: 8px;
+  border-color: #000;
+}
+/*Small screens*/
+@media only screen {
+
+} /* Define mobile styles */
+
+/* max-width 640px, mobile-only styles, use when QAing mobile issues */
+@media only screen and (max-width: 40em) { } 
+
+/* ------------------------------------------
+    Medium screens 
+    min-width 641px, medium screens 
+*/
+@media only screen and (min-width: 40.063em) {
+    
+
+} 
+
+/* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { } 
+
+/* ------------------------------------------
+    Large screens
+    min-width 1025px, large screens 
+*/
+@media only screen and (min-width: 64.063em) {
+
+} 
+
+/* min-width 1025px and max-width 1440px, use when QAing large screen-only issues */
+@media only screen and (min-width: 64.063em) and (max-width: 90em) { } 
+
+/* ------------------------------------------
+    XLarge screens
+    min-width 1441px, xlarge screens
+*/
+@media only screen and (min-width: 90.063em) { }
+
+/* min-width 1441px and max-width 1920px, use when QAing xlarge screen-only issues */
+@media only screen and (min-width: 90.063em) and (max-width: 120em) { } 
+
+/* ------------------------------------------ 
+    XXLarge screens
+    min-width 1921px, xxlarge screens
+*/
+@media only screen and (min-width: 120.063em) { }   
