@@ -1,1 +1,0 @@
-BossWebClient.ApplicationAdapter = DS.FixtureAdapter;
